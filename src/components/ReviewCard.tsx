@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, User } from 'lucide-react';
 import { Review } from '../types';
 import StarRating from './StarRating';
+import CompanyIcon from './CompanyIcon';
 
 interface ReviewCardProps {
   review: Review;
@@ -38,6 +39,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
               to={`/company/${encodeURIComponent(review.companyName)}`}
               className="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors"
             >
+              <CompanyIcon category={review.companyCategory} className="h-6 w-6 mr-2" />
               {review.companyName}
             </Link>
           )}

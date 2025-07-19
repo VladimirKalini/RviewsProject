@@ -1,14 +1,8 @@
-export interface User {
-  id: string;
-  username: string;
-  email: string;
-  password: string;
-  createdAt: string;
-}
-
-export interface Review {
+// Тип для основного отзыва в центральной колонке
+export type Review = {
   id: string;
   companyName: string;
+  companyCategory: 'tech' | 'web' | 'food' | 'auto';
   rating: number;
   title: string;
   content: string;
@@ -16,19 +10,13 @@ export interface Review {
   authorName: string;
   createdAt: string;
   category?: string;
-}
+  logoUrl?: string;
+};
 
-export interface Company {
-  name: string;
-  averageRating: number;
-  totalReviews: number;
-  category: string;
-}
-
-export interface AuthContextType {
-  user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
-  register: (username: string, email: string, password: string) => Promise<boolean>;
-  logout: () => void;
-  isAuthenticated: boolean;
-}
+// Тип для новости в правом сайдбаре
+export type NewsArticle = {
+  id: string;
+  title: string;
+  source: string;
+  imageUrl: string;
+};

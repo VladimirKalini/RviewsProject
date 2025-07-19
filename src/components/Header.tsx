@@ -1,18 +1,41 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, User, LogOut, PlusCircle } from 'lucide-react';
+import { Search, User, LogOut, PlusCircle, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import StarRating from './StarRating';
 
 const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [reviewForm, setReviewForm] = useState({
+    firstName: '',
+    lastName: '',
+    company: '',
+    location: '',
+    rating: 5,
+    comment: '',
+  });
+  const [reviewSent, setReviewSent] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/company/${encodeURIComponent(searchQuery.trim())}`);
     }
+  };
+
+  const handleReviewChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setReviewForm(prev => ({ ...prev, [name]: value }));
+  };
+  const handleReviewRating = (rating: number) => {
+    setReviewForm(prev => ({ ...prev, rating }));
+  };
+  const handleReviewSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setReviewSent(true);
   };
 
   return (
@@ -40,45 +63,35 @@ const Header: React.FC = () => {
             </form>
           </div>
 
-          {/* Auth buttons */}
-          <div className="flex items-center space-x-4">
-            {isAuthenticated ? (
-              <>
+          
+          {/* Кнопка оставить отзыв (десктоп) */}
+          <div className="hidden sm:flex items-center space-x-4">
+            <Link
+              to="/add-review"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Оставить отзыв
+            </Link>
+          </div>
+          {/* Бургер-меню для мобильных */}
+          <div className="flex sm:hidden">
+            <button onClick={() => setMobileMenuOpen(open => !open)} className="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none">
+              <Menu className="h-7 w-7" />
+            </button>
+          </div>
+          {mobileMenuOpen && (
+            <div className="absolute left-0 right-0 top-full z-50 w-full bg-white shadow-lg animate-slide-down">
+              <div className="flex flex-col items-center p-6">
                 <Link
                   to="/add-review"
-                  className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-lg mb-4"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  <PlusCircle className="h-4 w-4" />
-                  <span>Добавить отзыв</span>
+                  Оставить отзыв
                 </Link>
-                <div className="flex items-center space-x-2">
-                  <User className="h-5 w-5 text-gray-600" />
-                  <span className="text-gray-700">{user?.username}</span>
-                  <button
-                    onClick={logout}
-                    className="text-gray-500 hover:text-red-600 transition-colors"
-                  >
-                    <LogOut className="h-5 w-5" />
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="text-gray-700 hover:text-blue-600 transition-colors"
-                >
-                  Войти
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Регистрация
-                </Link>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>
