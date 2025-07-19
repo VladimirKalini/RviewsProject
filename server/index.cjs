@@ -11,13 +11,29 @@ const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
+
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
 
 // Data file paths
 const dataDir = path.join(__dirname, 'data');
 const usersFile = path.join(dataDir, 'users.json');
 const reviewsFile = path.join(dataDir, 'reviews.json');
+
+// Test route
+app.get('/test', (req, res) => {
+  console.log('Test route accessed');
+  res.json({ message: 'Server is working!', timestamp: new Date().toISOString() });
+});
 
 // Ensure data directory exists
 if (!fs.existsSync(dataDir)) {
@@ -164,13 +180,28 @@ app.post('/api/auth/login', async (req, res) => {
 
 // Review routes
 app.get('/api/reviews', (req, res) => {
+  console.log('GET /api/reviews - Request received');
   try {
     const reviews = readJSONFile(reviewsFile, []);
+    console.log(`Found ${reviews.length} reviews`);
     // Sort by creation date (newest first)
     const sortedReviews = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     res.json(sortedReviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
+// Direct access to reviews.json file
+app.get('/server/data/reviews.json', (req, res) => {
+  console.log('GET /server/data/reviews.json - Request received');
+  try {
+    const reviews = readJSONFile(reviewsFile, []);
+    console.log(`Found ${reviews.length} reviews in direct access`);
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews from direct path:', error);
     res.status(500).json({ error: 'Failed to fetch reviews' });
   }
 });
