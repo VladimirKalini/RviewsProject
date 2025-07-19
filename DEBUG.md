@@ -1,112 +1,97 @@
-# Диагностика проблем на VPS
+# Исправление проблемы с отображением данных на VPS
 
-## 1. Проверка работы сервера
+## Проблема была исправлена!
 
+**Основная причина:** Фронтенд обращался к статическому файлу `/server/data/reviews.json` вместо API эндпоинтов.
+
+## Что было исправлено:
+
+### 1. Заменены неправильные запросы на API эндпоинты:
+- ❌ `fetch('/server/data/reviews.json')` 
+- ✅ `fetch('/api/reviews')`
+
+### 2. Обновлены файлы:
+- `src/pages/Home.tsx` - использует `/api/reviews`
+- `src/pages/CompanyPage.tsx` - использует `/api/reviews/company/{name}`
+- `src/pages/CategoryPage.tsx` - использует `/api/reviews`
+- `src/context/AuthContext.tsx` - использует реальные API для аутентификации
+- `vite.config.ts` - добавлен прокси для разработки
+
+### 3. Создана конфигурация API:
+- `src/config/api.ts` - централизованное управление URL
+
+## Настройка для VPS:
+
+### 1. Создайте файл `.env` в корне проекта:
 ```bash
-# Запуск сервера с логированием
+# Для VPS укажите полный URL к серверу
+VITE_API_URL=http://your-vps-ip:3001
+```
+
+### 2. Пересоберите фронтенд:
+```bash
+npm run build
+```
+
+### 3. Убедитесь что сервер запущен:
+```bash
 cd server
 node index.cjs
 ```
 
-## 2. Тестирование API
+## Проверка работы:
 
+### 1. Тестирование API напрямую:
 ```bash
-# Тест базового маршрута
-curl http://localhost:3001/test
+# Базовый тест
+curl http://your-vps-ip:3001/test
 
-# Тест API отзывов
-curl http://localhost:3001/api/reviews
+# Получение отзывов
+curl http://your-vps-ip:3001/api/reviews
 
-# Тест прямого доступа к файлу
-curl http://localhost:3001/server/data/reviews.json
+# Отзывы конкретной компании
+curl "http://your-vps-ip:3001/api/reviews/company/TechNova"
 ```
 
-## 3. Проверка файлов
+### 2. Проверка в браузере:
+- Откройте ваш сайт на VPS
+- Отзывы и компании должны отображаться
+- Проверьте Network tab в DevTools - запросы должны идти к `/api/...`
 
+## Структура API:
+
+- `GET /api/reviews` - все отзывы (отсортированы по дате)
+- `GET /api/reviews/company/{name}` - отзывы конкретной компании
+- `POST /api/auth/login` - авторизация
+- `POST /api/auth/register` - регистрация
+- `POST /api/reviews` - создание отзыва (требует авторизации)
+
+## Если проблемы остались:
+
+### 1. Проверьте логи сервера:
 ```bash
-# Проверка существования файлов
-ls -la server/data/
-cat server/data/reviews.json | head -5
-
-# Проверка прав доступа
-chmod 644 server/data/reviews.json
-chmod 644 server/data/users.json
-```
-
-## 4. Проверка портов
-
-```bash
-# Проверка что порт 3001 открыт
-netstat -tlnp | grep 3001
-
-# Проверка firewall
-sudo ufw status
-```
-
-## 5. Проверка в браузере
-
-Откройте в браузере:
-- http://your-vps-ip:3001/test
-- http://your-vps-ip:3001/api/reviews
-- http://your-vps-ip:3001/server/data/reviews.json
-
-## 6. Проверка логов
-
-В консоли сервера должны появиться логи:
-```
-2025-01-XX - GET /test
-Test route accessed
-2025-01-XX - GET /api/reviews
-GET /api/reviews - Request received
-Found XXX reviews
-```
-
-## 7. Возможные проблемы
-
-### Проблема: Файл не найден
-**Решение:**
-```bash
-# Проверить путь к файлу
-pwd
-ls -la server/data/reviews.json
-```
-
-### Проблема: CORS ошибки
-**Решение:**
-Проверить что в коде есть:
-```javascript
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-```
-
-### Проблема: Порт заблокирован
-**Решение:**
-```bash
-# Открыть порт в firewall
-sudo ufw allow 3001
-```
-
-## 8. Проверка фронтенда
-
-```bash
-# Сборка проекта
-npm run build
-
-# Проверка что dist папка создалась
-ls -la dist/
-```
-
-## 9. Полная диагностика
-
-```bash
-# 1. Остановить сервер (Ctrl+C)
-# 2. Запустить с подробным логированием
 cd server
-DEBUG=* node index.cjs
+node index.cjs
+# Должны появляться логи запросов
+```
 
-# 3. В другом терминале протестировать
-curl -v http://localhost:3001/api/reviews
+### 2. Проверьте Network в DevTools:
+- Откройте F12 → Network
+- Обновите страницу
+- Должны быть запросы к `/api/reviews` со статусом 200
+
+### 3. Проверьте CORS:
+```bash
+curl -H "Origin: http://your-frontend-domain" \
+     -H "Access-Control-Request-Method: GET" \
+     -H "Access-Control-Request-Headers: Content-Type" \
+     -X OPTIONS \
+     http://your-vps-ip:3001/api/reviews
+```
+
+### 4. Проверьте переменные окружения:
+```bash
+# В папке фронтенда
+cat .env
+# Должна быть: VITE_API_URL=http://your-vps-ip:3001
 ``` 

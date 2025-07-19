@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { TrendingUp, Building, Code, Utensils, Wrench, Newspaper, Clock } from 'lucide-react';
 import CompanyIcon from '../components/CompanyIcon';
 import NewsSidebar from '../components/NewsSidebar';
+import { API_ENDPOINTS, createApiUrl } from '../config/api';
 
 
 // --- ТИПЫ ДАННЫХ ---
@@ -187,10 +188,10 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/server/data/reviews.json')
+    fetch(createApiUrl(API_ENDPOINTS.REVIEWS))
       .then(res => res.json())
       .then((data: Review[]) => {
-        setReviews(data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 10));
+        setReviews(data.slice(0, 10)); // API уже сортирует по дате
         setLoading(false);
       })
       .catch(() => setLoading(false));

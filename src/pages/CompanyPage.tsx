@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import CompanyIcon from '../components/CompanyIcon';
 import ReviewsWidget from '../components/ReviewsWidget';
 import NewsSidebar from '../components/NewsSidebar';
+import { API_ENDPOINTS, createApiUrl } from '../config/api';
 
 const CompanyPage: React.FC = () => {
   const { companyName } = useParams<{ companyName: string }>();
@@ -16,15 +17,17 @@ const CompanyPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!companyName) {
+      setReviews([]);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
-    fetch('/server/data/reviews.json')
+    fetch(createApiUrl(API_ENDPOINTS.COMPANY_REVIEWS(companyName)))
       .then(res => res.json())
       .then((data: Review[]) => {
-        if (companyName) {
-          setReviews(data.filter(r => r.companyName.toLowerCase() === decodeURIComponent(companyName).toLowerCase()));
-        } else {
-          setReviews([]);
-        }
+        setReviews(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));

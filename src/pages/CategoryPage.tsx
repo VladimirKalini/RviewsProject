@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import ReviewsWidget from '../components/ReviewsWidget';
 import NewsSidebar from '../components/NewsSidebar';
+import { API_ENDPOINTS, createApiUrl } from '../config/api';
 
 const categories = {
   'it-internet': {
@@ -67,7 +68,7 @@ const CategoryPage: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/server/data/reviews.json')
+    fetch(createApiUrl(API_ENDPOINTS.REVIEWS))
       .then(res => res.json())
       .then((data: Review[]) => {
         if (categorySlug) {

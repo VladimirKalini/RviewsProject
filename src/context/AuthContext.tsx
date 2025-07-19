@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { User, AuthContextType } from '../types';
+import { API_ENDPOINTS, createApiUrl } from '../config/api';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -15,57 +16,78 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Mock data for demonstration
-const mockUsers: User[] = [
-  {
-    id: '1',
-    username: 'Иван Петров',
-    email: 'ivan@example.com',
-    password: 'password123',
-    createdAt: new Date().toISOString()
-  }
-];
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    // Mock login logic
-    const foundUser = mockUsers.find(u => u.email === email && u.password === password);
-    if (foundUser) {
-      setUser(foundUser);
-      setIsAuthenticated(true);
-      localStorage.setItem('user', JSON.stringify(foundUser));
-      return true;
+  // Проверяем сохраненного пользователя при загрузке
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    const savedToken = localStorage.getItem('token');
+    if (savedUser && savedToken) {
+      try {
+        setUser(JSON.parse(savedUser));
+        setIsAuthenticated(true);
+      } catch (error) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      }
     }
-    return false;
+  }, []);
+
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await fetch(createApiUrl(API_ENDPOINTS.AUTH_LOGIN), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        setIsAuthenticated(true);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Login error:', error);
+      return false;
+    }
   };
 
   const register = async (username: string, email: string, password: string): Promise<boolean> => {
-    // Mock registration logic
-    const existingUser = mockUsers.find(u => u.email === email);
-    if (existingUser) {
+    try {
+      const response = await fetch(createApiUrl(API_ENDPOINTS.AUTH_REGISTER), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        setIsAuthenticated(true);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Registration error:', error);
       return false;
     }
-
-    const newUser: User = {
-      id: Date.now().toString(),
-      username,
-      email,
-      password,
-      createdAt: new Date().toISOString()
-    };
-
-    mockUsers.push(newUser);
-    setUser(newUser);
-    setIsAuthenticated(true);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    return true;
   };
 
   const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setUser(null);
     setIsAuthenticated(false);
   };

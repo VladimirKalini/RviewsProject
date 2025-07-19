@@ -20,3 +20,21 @@ export type NewsArticle = {
   source: string;
   imageUrl: string;
 };
+
+// Тип для пользователя
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  password?: string;
+  createdAt: string;
+};
+
+// Тип для контекста аутентификации
+export type AuthContextType = {
+  user: User | null;
+  isAuthenticated: boolean;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (username: string, email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+};
