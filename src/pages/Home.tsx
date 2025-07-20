@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // Импортируем все необходимые иконки
 import { TrendingUp, Building, Code, Utensils, Wrench, Newspaper, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import CompanyIcon from '../components/CompanyIcon';
 import NewsSidebar from '../components/NewsSidebar';
 import { API_ENDPOINTS, createApiUrl } from '../config/api';
@@ -33,6 +34,7 @@ type ReviewWidgetItemData = {
   logoUrl: string;
   title: string;
   date: string;
+  companyLink?: string;
 };
 
 
@@ -93,61 +95,78 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
 // --- НОВЫЙ ВСТРОЕННЫЙ КОМПОНЕНТ REVIEWSWIDGET ---
 
 const newMockWidgetReviews: ReviewWidgetItemData[] = [
-    { id: 1, logoUrl: 'https://cdn-icons-png.flaticon.com/512/3081/3081648.png', title: 'Ekscentrik.ru интернет-магазин отзывы', date: '29.04.2025' },
-    { id: 2, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2666/2666064.png', title: 'Франшиза Maturlook отзывы, платят или нет?', date: '18.04.2025' },
-    { id: 3, logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135706.png', title: 'MaxProfit отзывы, платят или нет?', date: '18.04.2025' },
-    { id: 4, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2936/2936732.png', title: 'AutoFix-Мастер отзывы о сервисе', date: '15.04.2025' },
-    { id: 5, logoUrl: 'https://cdn-icons-png.flaticon.com/512/1048/1048953.png', title: 'Доставка "БыстроЕм" - стоит ли заказывать?', date: '12.04.2025' },
-    { id: 6, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2991/2991148.png', title: 'Онлайн-курсы SkillUp: развод или нет?', date: '11.04.2025' },
+    { id: 1, logoUrl: 'https://cdn-icons-png.flaticon.com/512/3081/3081648.png', title: 'Ekscentrik.ru', date: '29.04.2025', companyLink: '/company/Ekscentrik.ru' },
+    { id: 2, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2666/2666064.png', title: 'Maturlook', date: '18.04.2025', companyLink: '/company/Maturlook' },
+    { id: 3, logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135706.png', title: 'MaxProfit', date: '18.04.2025', companyLink: '/company/MaxProfit' },
+    { id: 4, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2936/2936732.png', title: 'AutoFix-Мастер', date: '15.04.2025', companyLink: '/company/AutoFix-Мастер' },
+    { id: 5, logoUrl: 'https://cdn-icons-png.flaticon.com/512/1048/1048953.png', title: 'БыстроЕм', date: '12.04.2025', companyLink: '/company/БыстроЕм' },
+    { id: 6, logoUrl: 'https://cdn-icons-png.flaticon.com/512/2991/2991148.png', title: 'SkillUp', date: '11.04.2025', companyLink: '/company/SkillUp' },
 ];
 
 const newMockPopularReviews: ReviewWidgetItemData[] = [
   { 
     id: 13, 
     logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135673.png', 
-    title: 'Маркетплейс Ozon', 
-    date: '10.07.2025' 
+    title: 'Ozon', 
+    date: '10.07.2025',
+    companyLink: '/company/Ozon'
   },
   { 
     id: 14, 
     logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135689.png', 
-    title: 'Доска объявлений Avito', 
-    date: '09.07.2025' 
+    title: 'Avito', 
+    date: '09.07.2025',
+    companyLink: '/company/Avito'
   },
   { 
     id: 15, 
     logoUrl: 'https://cdn-icons-png.flaticon.com/512/3082/3082003.png', 
-    title: 'Магазин техники М.Видео', 
-    date: '08.07.2025' 
+    title: 'М.Видео', 
+    date: '08.07.2025',
+    companyLink: '/company/М.Видео'
   },
   { 
     id: 16, 
     logoUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046786.png', 
-    title: 'Доставка еды Яндекс.Еда', 
-    date: '07.07.2025' 
+    title: 'Яндекс.Еда', 
+    date: '07.07.2025',
+    companyLink: '/company/Яндекс.Еда'
   },
   { 
     id: 17, 
     logoUrl: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', 
-    title: 'Леруа Мерлен - товары для дома', 
-    date: '05.07.2025' 
+    title: 'Леруа Мерлен', 
+    date: '05.07.2025',
+    companyLink: '/company/Леруа Мерлен'
   },
 ];
 
-const ReviewWidgetItem: React.FC<{ item: ReviewWidgetItemData }> = ({ item }) => (
-  <a href="#" className="flex items-start p-3 hover:bg-gray-50 rounded-lg">
-    <div className="flex-shrink-0 mr-4">
-      <img src={item.logoUrl} alt={item.title} className="w-16 h-16 object-cover rounded-lg bg-white shadow-sm" />
-    </div>
-    <div className="flex flex-col">
-      <h3 className="font-medium text-gray-800 leading-tight">{item.title}</h3>
-      <div className="flex items-center text-sm text-gray-400 mt-2">
-        <Clock className="w-4 h-4 mr-1.5" />
-        <span>{item.date}</span>
+const ReviewWidgetItem: React.FC<{ item: ReviewWidgetItemData }> = ({ item }) => {
+  const content = (
+    <>
+      <div className="flex-shrink-0 mr-4">
+        <img src={item.logoUrl} alt={item.title} className="w-16 h-16 object-cover rounded-lg bg-white shadow-sm" />
       </div>
+      <div className="flex flex-col">
+        <h3 className="font-medium text-gray-800 leading-tight hover:text-blue-600 transition-colors">{item.title}</h3>
+        <div className="flex items-center text-sm text-gray-400 mt-2">
+          <Clock className="w-4 h-4 mr-1.5" />
+          <span>{item.date}</span>
+        </div>
+      </div>
+    </>
+  );
+
+  return item.companyLink ? (
+    <Link to={item.companyLink} className="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-colors">
+      {content}
+    </Link>
+  ) : (
+    <div className="flex items-start p-3 hover:bg-gray-50 rounded-lg transition-colors">
+      {content}
     </div>
-  </a>
-);
+  );
+};
 
 const ReviewsWidget: React.FC = () => {
   const [activeTab, setActiveTab] = useState('new');
