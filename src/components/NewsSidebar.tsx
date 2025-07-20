@@ -2,15 +2,15 @@ import React from 'react';
 import { Newspaper } from 'lucide-react';
 
 const mockNews = [
-  { id: 'n1', title: 'Как выбрать лучшую IT-компанию для вашего проекта?', source: 'Tech Today', imageUrl: 'https://picsum.photos/seed/it/400/400', url: 'https://vc.ru/tech' },
-  { id: 'n2', title: 'Новые тренды в веб-дизайне 2025 года', source: 'Design Weekly', imageUrl: 'https://picsum.photos/seed/design/400/400', url: 'https://habr.com/ru/hub/webdev/' },
-  { id: 'n3', title: 'Рейтинг служб доставки еды: кто на первом месте?', source: 'Food & Life', imageUrl: 'https://picsum.photos/seed/food/400/400', url: 'https://eda.ru/recepty' },
-  { id: 'n4', title: 'Лучшие автосервисы города: топ-10', source: 'Auto News', imageUrl: 'https://picsum.photos/seed/auto/400/400', url: 'https://www.autonews.ru/' },
-  { id: 'n5', title: 'Образовательные курсы: что выбрать в 2025?', source: 'Edu Portal', imageUrl: 'https://picsum.photos/seed/courses/400/400', url: 'https://www.coursera.org/' },
-  { id: 'n6', title: 'Недвижимость: тренды и прогнозы', source: 'Real Estate Pro', imageUrl: 'https://picsum.photos/seed/realty/400/400', url: 'https://realty.rbc.ru/' },
-  { id: 'n7', title: 'Инвестиции 2025: Куда вложить деньги?', source: 'Finance Today', imageUrl: 'https://picsum.photos/seed/invest/400/400', url: 'https://journal.tinkoff.ru/invest/' },
-  { id: 'n8', title: 'Топ-5 направлений для зимнего отпуска', source: 'Travel Weekly', imageUrl: 'https://picsum.photos/seed/travel/400/400', url: 'https://www.tourdom.ru/' },
-  { id: 'n9', title: 'Как сохранить здоровье в большом городе?', source: 'Health & Life', imageUrl: 'https://picsum.photos/seed/health/400/400', url: 'https://medportal.ru/' },
+  { id: 'n1', title: 'Как выбрать лучшую IT-компанию для вашего проекта?', source: 'Tech Today', imageUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135684.png', url: 'https://vc.ru/tech' },
+  { id: 'n2', title: 'Новые тренды в веб-дизайне 2025 года', source: 'Design Weekly', imageUrl: 'https://cdn-icons-png.flaticon.com/512/1055/1055646.png', url: 'https://habr.com/ru/hub/webdev/' },
+  { id: 'n3', title: 'Рейтинг служб доставки еды: кто на первом месте?', source: 'Food & Life', imageUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046786.png', url: 'https://eda.ru/recepty' },
+  { id: 'n4', title: 'Лучшие автосервисы города: топ-10', source: 'Auto News', imageUrl: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png', url: 'https://www.autonews.ru/' },
+  { id: 'n5', title: 'Образовательные курсы: что выбрать в 2025?', source: 'Edu Portal', imageUrl: 'https://cdn-icons-png.flaticon.com/512/3002/3002543.png', url: 'https://www.coursera.org/' },
+  { id: 'n6', title: 'Недвижимость: тренды и прогнозы', source: 'Real Estate Pro', imageUrl: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', url: 'https://realty.rbc.ru/' },
+  { id: 'n7', title: 'Инвестиции 2025: Куда вложить деньги?', source: 'Finance Today', imageUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', url: 'https://journal.tinkoff.ru/invest/' },
+  { id: 'n8', title: 'Топ-5 направлений для зимнего отпуска', source: 'Travel Weekly', imageUrl: 'https://cdn-icons-png.flaticon.com/512/201/201623.png', url: 'https://www.tourdom.ru/' },
+  { id: 'n9', title: 'Как сохранить здоровье в большом городе?', source: 'Health & Life', imageUrl: 'https://cdn-icons-png.flaticon.com/512/2966/2966327.png', url: 'https://medportal.ru/' },
 ];
 
 const NewsSidebar: React.FC = () => (

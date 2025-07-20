@@ -104,31 +104,31 @@ const newMockWidgetReviews: ReviewWidgetItemData[] = [
 const newMockPopularReviews: ReviewWidgetItemData[] = [
   { 
     id: 13, 
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ozon_Logo.svg/1200px-Ozon_Logo.svg.png', 
+    logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135673.png', 
     title: 'Маркетплейс Ozon', 
     date: '10.07.2025' 
   },
   { 
     id: 14, 
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Avito_logo.svg/1200px-Avito_logo.svg.png', 
+    logoUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135689.png', 
     title: 'Доска объявлений Avito', 
     date: '09.07.2025' 
   },
   { 
     id: 15, 
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/M.Video_logo.svg/1200px-M.Video_logo.svg.png', 
+    logoUrl: 'https://cdn-icons-png.flaticon.com/512/3082/3082003.png', 
     title: 'Магазин техники М.Видео', 
     date: '08.07.2025' 
   },
   { 
     id: 16, 
-    logoUrl: 'https://cdn.worldvectorlogo.com/logos/yandex-eda-1.svg', 
+    logoUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046786.png', 
     title: 'Доставка еды Яндекс.Еда', 
     date: '07.07.2025' 
   },
   { 
     id: 17, 
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/ru/thumb/9/96/Logo_of_the_Leroy_Merlin.svg/1200px-Logo_of_the_Leroy_Merlin.svg.png', 
+    logoUrl: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png', 
     title: 'Леруа Мерлен - товары для дома', 
     date: '05.07.2025' 
   },
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
     fetch(createApiUrl(API_ENDPOINTS.REVIEWS))
       .then(res => res.json())
       .then((data: Review[]) => {
-        setReviews(data.slice(0, 10)); // API уже сортирует по дате
+        setReviews(data.slice(0, 10)); 
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -217,7 +217,7 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           <aside className="lg:col-span-3">
-            {/* ВОТ ЗДЕСЬ ИСПОЛЬЗУЕТСЯ ОБНОВЛЕННЫЙ КОМПОНЕНТ */}
+        
             <ReviewsWidget />
           </aside>
           
