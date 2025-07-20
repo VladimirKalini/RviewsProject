@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { PlusCircle, Building2 } from 'lucide-react';
 import { Review } from '../types';
 import ReviewCard from '../components/ReviewCard';
@@ -40,13 +41,94 @@ const CompanyPage: React.FC = () => {
     ? companyReviews.reduce((sum, review) => sum + review.rating, 0) / companyReviews.length
     : 0;
 
+  // SEO мета-теги для каждой компании
+  const getCompanySEO = (name: string, reviewsCount: number, rating: number) => {
+    const baseTitle = `${name} отзывы - Reccomended.ru`;
+    const baseDescription = `Читайте ${reviewsCount} отзывов о компании ${name}. Средняя оценка: ${rating.toFixed(1)} из 5. Реальные отзывы клиентов на Reccomended.ru`;
+    
+    // Специальные SEO данные для EstoniaMotors
+    if (name === 'EstoniaMotors') {
+      return {
+        title: `EstoniaMotors.ru отзывы - Контрактные двигатели и коробки передач | Reccomended.ru`,
+        description: `${reviewsCount} отзывов о EstoniaMotors.ru ⭐ ${rating.toFixed(1)}/5. Контрактные двигатели, коробки передач, автозапчасти из Эстонии. Гарантия, быстрая доставка. Читайте реальные отзывы покупателей.`,
+        keywords: `EstoniaMotors отзывы, EstoniaMotors.ru, контрактные двигатели, коробки передач, автозапчасти эстония, двигатель с гарантией, отзывы покупателей, запчасти из европы`,
+        ogTitle: `EstoniaMotors.ru - ${reviewsCount} отзывов о контрактных двигателях`,
+        ogDescription: `Реальные отзывы о EstoniaMotors.ru. Контрактные двигатели и коробки передач с гарантией. Средняя оценка ${rating.toFixed(1)} из 5 звезд.`
+      };
+    }
+    
+    return {
+      title: baseTitle,
+      description: baseDescription,
+      keywords: `${name} отзывы, ${name} отзывы клиентов, оценка компании ${name}`,
+      ogTitle: `${name} - ${reviewsCount} отзывов`,
+      ogDescription: baseDescription
+    };
+  };
+
+  const seoData = getCompanySEO(decodedCompanyName, companyReviews.length, averageRating);
+
   const starsCount = [1, 2, 3, 4, 5].map(star =>
     companyReviews.filter(r => r.rating === star).length
   );
   const maxCount = Math.max(...starsCount, 1);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <Helmet>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.description} />
+        <meta name="keywords" content={seoData.keywords} />
+        
+        {/* Open Graph теги для соцсетей */}
+        <meta property="og:title" content={seoData.ogTitle} />
+        <meta property="og:description" content={seoData.ogDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://reccomended.ru/company/${encodeURIComponent(decodedCompanyName)}`} />
+        <meta property="og:site_name" content="Reccomended.ru" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={seoData.ogTitle} />
+        <meta name="twitter:description" content={seoData.ogDescription} />
+        
+        {/* Структурированные данные для поисковиков */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": decodedCompanyName,
+            "url": `https://reccomended.ru/company/${encodeURIComponent(decodedCompanyName)}`,
+            "aggregateRating": companyReviews.length > 0 ? {
+              "@type": "AggregateRating",
+              "ratingValue": averageRating.toFixed(1),
+              "reviewCount": companyReviews.length,
+              "bestRating": "5",
+              "worstRating": "1"
+            } : undefined,
+            "review": companyReviews.slice(0, 3).map(review => ({
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": review.authorName
+              },
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": review.rating,
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": review.content,
+              "datePublished": review.createdAt
+            }))
+          })}
+        </script>
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href={`https://reccomended.ru/company/${encodeURIComponent(decodedCompanyName)}`} />
+      </Helmet>
+      
+      <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto sm:px-6 lg:px-8">
         <div className="flex flex-row gap-8">
           <aside className="w-80 shrink-0 hidden lg:block">
@@ -129,7 +211,8 @@ const CompanyPage: React.FC = () => {
           </aside>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

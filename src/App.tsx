@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -11,8 +12,9 @@ import CategoryPage from './pages/CategoryPage';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <HelmetProvider>
+      <AuthProvider>
+        <Router>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -23,8 +25,9 @@ function App() {
             <Route path="/category/:categorySlug" element={<CategoryPage />} />
           </Route>
         </Routes>
-      </Router>
-    </AuthProvider>
+        </Router>
+      </AuthProvider>
+    </HelmetProvider>
   );
 }
 
