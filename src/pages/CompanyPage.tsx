@@ -46,16 +46,16 @@ const CompanyPage: React.FC = () => {
     const baseTitle = `${name} отзывы - Reccomended.ru`;
     const baseDescription = `Читайте ${reviewsCount} отзывов о компании ${name}. Средняя оценка: ${rating.toFixed(1)} из 5. Реальные отзывы клиентов на Reccomended.ru`;
     
-    // Специальные SEO данные для EstoniaMotors
-    if (name === 'EstoniaMotors') {
-      return {
-        title: `estoniamotors.ru отзывы - EstoniaMotors.ru официальный сайт | Reccomended.ru`,
-        description: `${reviewsCount} отзывов о estoniamotors.ru ⭐ ${rating.toFixed(1)}/5. EstoniaMotors.ru - контрактные двигатели, коробки передач, автозапчасти из Эстонии. Официальный сайт estoniamotors.ru. Гарантия, быстрая доставка. Читайте реальные отзывы покупателей о estoniamotors.ru.`,
-        keywords: `estoniamotors.ru, estoniamotors.ru отзывы, Estoniamotors.ru отзывы, ESTONIAMOTORS.RU, estoniamotors отзывы, estonia motors отзывы, EstoniaMotors.ru, эстония моторс, эстония моторс отзывы, estoniamotors ru отзывы, estoniamotors ру отзывы, estonia-motors.ru, www.estoniamotors.ru, estoniamotors сайт, estoniamotors официальный сайт, estoniamotors интернет магазин отзывы, контрактные двигатели эстония, коробки передач эстония, автозапчасти эстония, двигатель с гарантией, отзывы покупателей, запчасти из европы, контрактный мотор эстония, estonia motors ru, estoniamotors интернет магазин, эстониямоторс отзывы, контрактные запчасти отзывы, estoniamotors доставка, estoniamotors гарантия, эстония автозапчасти интернет магазин`,
-        ogTitle: `estoniamotors.ru отзывы - ${reviewsCount} отзывов о EstoniaMotors.ru`,
-        ogDescription: `Реальные отзывы о estoniamotors.ru интернет-магазине. EstoniaMotors.ru - контрактные двигатели и коробки передач с гарантией. Средняя оценка ${rating.toFixed(1)} из 5 звезд. Отзывы о estoniamotors.ru от реальных покупателей.`
-      };
-    }
+         // Специальные SEO данные для MotorZen.ru
+     if (name === 'MotorZen.ru') {
+       return {
+         title: `motorzen.ru отзывы - MotorZen.ru официальный сайт | Reccomended.ru`,
+         description: `${reviewsCount} отзывов о motorzen.ru ⭐ ${rating.toFixed(1)}/5. MotorZen.ru - контрактные двигатели, коробки передач, автозапчасти с гарантией. Официальный сайт motorzen.ru. Быстрая доставка по России. Читайте реальные отзывы покупателей о motorzen.ru.`,
+         keywords: `motorzen.ru отзывы, Motorzen.ru отзывы, отзывы motorzen, motorzen отзывы покупателей, motor zen отзывы, моторзен отзывы, motorzen ru отзывы, motorzen ру отзывы, отзывы о motorzen.ru, отзывы покупателей motorzen, motorzen отзывы, MotorZen отзывы, MOTORZEN отзывы, motorzen.ru, MotorZen.ru, MOTORZEN.RU, www.motorzen.ru, motorzen сайт, motorzen официальный сайт, motorzen интернет магазин отзывы, моторзен отзывы, отзывы моторзен, контрактные двигатели отзывы, коробки передач отзывы, автозапчасти отзывы, запчасти motorzen`,
+         ogTitle: `motorzen.ru отзывы - ${reviewsCount} отзывов о MotorZen.ru`,
+         ogDescription: `Реальные отзывы о motorzen.ru интернет-магазине. MotorZen.ru - контрактные двигатели и коробки передач с гарантией. Средняя оценка ${rating.toFixed(1)} из 5 звезд. Отзывы о motorzen.ru от реальных покупателей.`
+       };
+     }
     
     return {
       title: baseTitle,
@@ -80,29 +80,29 @@ const CompanyPage: React.FC = () => {
         <meta name="description" content={seoData.description} />
         <meta name="keywords" content={seoData.keywords} />
         
-                 {/* Дополнительные мета-теги для EstoniaMotors */}
-         {decodedCompanyName === 'EstoniaMotors' && (
+                                   {/* Дополнительные мета-теги для MotorZen.ru */}
+          {decodedCompanyName === 'MotorZen.ru' && (
            <>
-             <meta name="author" content="estoniamotors.ru отзывы" />
-             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-             <meta name="revisit-after" content="1 days" />
-             <meta name="rating" content="general" />
-             <meta name="distribution" content="global" />
-             <meta name="language" content="Russian" />
-             <meta name="copyright" content="estoniamotors.ru отзывы" />
-             <meta property="article:tag" content="estoniamotors.ru" />
-             <meta property="article:tag" content="estoniamotors.ru отзывы" />
-             <meta property="article:tag" content="Estoniamotors.ru отзывы" />
-             <meta property="article:tag" content="estonia motors" />
-             <meta property="article:tag" content="эстония моторс" />
-             <meta property="article:tag" content="контрактные двигатели" />
-             <meta property="article:tag" content="estoniamotors официальный сайт" />
-             <meta property="article:tag" content="estoniamotors интернет магазин" />
-             <meta name="geo.placename" content="Эстония" />
-             <meta name="geo.region" content="EE" />
-             <meta name="DC.title" content="estoniamotors.ru отзывы" />
-             <meta name="DC.subject" content="estoniamotors.ru отзывы покупателей" />
-             <meta name="DC.description" content="Отзывы о estoniamotors.ru - контрактные двигатели и коробки передач" />
+                            <meta name="author" content="motorzen.ru отзывы" />
+               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+               <meta name="revisit-after" content="1 days" />
+               <meta name="rating" content="general" />
+               <meta name="distribution" content="global" />
+               <meta name="language" content="Russian" />
+               <meta name="copyright" content="motorzen.ru отзывы" />
+               <meta property="article:tag" content="motorzen.ru" />
+               <meta property="article:tag" content="motorzen.ru отзывы" />
+               <meta property="article:tag" content="Motorzen.ru отзывы" />
+               <meta property="article:tag" content="motor zen" />
+               <meta property="article:tag" content="моторзен" />
+               <meta property="article:tag" content="контрактные двигатели" />
+               <meta property="article:tag" content="motorzen официальный сайт" />
+               <meta property="article:tag" content="motorzen интернет магазин" />
+               <meta name="geo.placename" content="Россия" />
+               <meta name="geo.region" content="RU" />
+               <meta name="DC.title" content="motorzen.ru отзывы" />
+               <meta name="DC.subject" content="motorzen.ru отзывы покупателей" />
+               <meta name="DC.description" content="Отзывы о motorzen.ru - контрактные двигатели и коробки передач с гарантией" />
            </>
          )}
         
@@ -124,25 +124,25 @@ const CompanyPage: React.FC = () => {
              "@context": "https://schema.org",
              "@type": "Organization",
              "name": decodedCompanyName,
-             "alternateName": decodedCompanyName === 'EstoniaMotors' ? [
-               "EstoniaMotors.ru", 
-               "estoniamotors.ru", 
-               "ESTONIAMOTORS.RU",
-               "www.estoniamotors.ru",
-               "Estonia Motors", 
-               "Эстония Моторс",
-               "Estonia Motors ru",
-               "estoniamotors ру",
-               "эстониямоторс",
-               "estoniamotors сайт",
-               "estoniamotors официальный сайт"
-             ] : undefined,
+                           "alternateName": decodedCompanyName === 'MotorZen.ru' ? [
+                "MotorZen.ru", 
+                "motorzen.ru", 
+                "MOTORZEN.RU",
+                "www.motorzen.ru",
+                "Motor Zen", 
+                "Моторзен",
+                "Motor Zen ru",
+                "motorzen ру",
+                "моторзен",
+                "motorzen сайт",
+                "motorzen официальный сайт"
+              ] : undefined,
              "url": `https://reccomended.ru/company/${encodeURIComponent(decodedCompanyName)}`,
-             "sameAs": decodedCompanyName === 'EstoniaMotors' ? [
-               "https://estoniamotors.ru",
-               "https://www.estoniamotors.ru",
-               "https://reccomended.ru/company/EstoniaMotors"
-             ] : undefined,
+                           "sameAs": decodedCompanyName === 'MotorZen.ru' ? [
+                "https://motorzen.ru",
+                "https://www.motorzen.ru",
+                "https://reccomended.ru/company/MotorZen.ru"
+              ] : undefined,
             "aggregateRating": companyReviews.length > 0 ? {
               "@type": "AggregateRating",
               "ratingValue": averageRating.toFixed(1),
@@ -196,8 +196,8 @@ const CompanyPage: React.FC = () => {
            })}
                   </script>
          
-         {/* FAQ структурированные данные для EstoniaMotors */}
-         {decodedCompanyName === 'EstoniaMotors' && (
+                   {/* FAQ структурированные данные для MotorZen.ru */}
+          {decodedCompanyName === 'MotorZen.ru' && (
            <script type="application/ld+json">
              {JSON.stringify({
                "@context": "https://schema.org",
@@ -205,34 +205,34 @@ const CompanyPage: React.FC = () => {
                "mainEntity": [
                  {
                    "@type": "Question",
-                   "name": "Что такое estoniamotors.ru?",
+                   "name": "Что такое motorzen.ru?",
                    "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "EstoniaMotors.ru - это интернет-магазин контрактных двигателей и коробок передач из Эстонии. На сайте estoniamotors.ru можно купить качественные автозапчасти с гарантией."
+                     "text": "MotorZen.ru - это интернет-магазин контрактных двигателей и коробок передач с гарантией. На сайте motorzen.ru можно купить качественные автозапчасти с быстрой доставкой по России."
                    }
                  },
                  {
                    "@type": "Question", 
-                   "name": "Какие отзывы о estoniamotors.ru?",
+                   "name": "Какие отзывы о motorzen.ru?",
                    "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Отзывы о EstoniaMotors.ru в основном положительные. Покупатели отмечают качество товаров, быструю доставку и гарантию на продукцию estoniamotors.ru."
+                     "text": "Отзывы о MotorZen.ru исключительно положительные. Покупатели отмечают высокое качество товаров, профессиональный подход, быструю доставку и надежную гарантию motorzen.ru."
                    }
                  },
                  {
                    "@type": "Question",
-                   "name": "Надежен ли сайт estoniamotors.ru?", 
+                   "name": "Надежен ли сайт motorzen.ru?", 
                    "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "По отзывам покупателей, EstoniaMotors.ru - надежный интернет-магазин. Компания предоставляет гарантию на товары и осуществляет быструю доставку."
+                     "text": "По отзывам покупателей, MotorZen.ru - очень надежный интернет-магазин. Компания предоставляет гарантию на товары, качественную консультацию и быструю доставку."
                    }
                  },
                  {
                    "@type": "Question",
-                   "name": "Где найти отзывы о estoniamotors.ru?",
+                   "name": "Где найти отзывы о motorzen.ru?",
                    "acceptedAnswer": {
                      "@type": "Answer", 
-                     "text": "Отзывы о EstoniaMotors.ru можно найти на этой странице. Здесь собраны реальные мнения покупателей о estoniamotors.ru интернет-магазине."
+                     "text": "Отзывы о MotorZen.ru можно найти на этой странице. Здесь собраны реальные мнения покупателей о motorzen.ru интернет-магазине и качестве обслуживания."
                    }
                  }
                ]
@@ -240,23 +240,23 @@ const CompanyPage: React.FC = () => {
            </script>
          )}
                    
-          {/* Дополнительные ссылки для EstoniaMotors */}
-          {decodedCompanyName === 'EstoniaMotors' && (
+                     {/* Дополнительные ссылки для MotorZen.ru */}
+           {decodedCompanyName === 'MotorZen.ru' && (
            <>
-             <link rel="alternate" href={`https://reccomended.ru/company/EstoniaMotors`} hrefLang="ru" />
-             <link rel="dns-prefetch" href="//estoniamotors.ru" />
-             <link rel="preconnect" href="https://estoniamotors.ru" />
-             <meta name="theme-color" content="#3b82f6" />
-             <meta name="apple-mobile-web-app-title" content="estoniamotors.ru отзывы" />
-             <meta name="application-name" content="estoniamotors.ru отзывы" />
-             <meta name="msapplication-TileColor" content="#3b82f6" />
-             <meta name="msapplication-tooltip" content="Отзывы о estoniamotors.ru" />
-             <meta property="og:locale" content="ru_RU" />
-             <meta property="og:image" content="https://reccomended.ru/favicon.png" />
-             <meta property="og:image:width" content="300" />
-             <meta property="og:image:height" content="300" />
-             <meta property="og:image:alt" content="estoniamotors.ru отзывы" />
-             <meta name="twitter:image" content="https://reccomended.ru/favicon.png" />
+                            <link rel="alternate" href={`https://reccomended.ru/company/MotorZen.ru`} hrefLang="ru" />
+               <link rel="dns-prefetch" href="//motorzen.ru" />
+               <link rel="preconnect" href="https://motorzen.ru" />
+               <meta name="theme-color" content="#3b82f6" />
+               <meta name="apple-mobile-web-app-title" content="motorzen.ru отзывы" />
+               <meta name="application-name" content="motorzen.ru отзывы" />
+               <meta name="msapplication-TileColor" content="#3b82f6" />
+               <meta name="msapplication-tooltip" content="Отзывы о motorzen.ru" />
+               <meta property="og:locale" content="ru_RU" />
+               <meta property="og:image" content="https://reccomended.ru/favicon.png" />
+               <meta property="og:image:width" content="300" />
+               <meta property="og:image:height" content="300" />
+               <meta property="og:image:alt" content="motorzen.ru отзывы" />
+               <meta name="twitter:image" content="https://reccomended.ru/favicon.png" />
            </>
          )}
          
@@ -276,8 +276,8 @@ const CompanyPage: React.FC = () => {
                 {companyReviews[0]?.logoUrl && (
                   <img 
                     src={companyReviews[0].logoUrl} 
-                    alt={decodedCompanyName === 'EstoniaMotors' 
-                      ? 'EstoniaMotors.ru логотип - контрактные двигатели и коробки передач'
+                    alt={decodedCompanyName === 'MotorZen.ru' 
+                      ? 'MotorZen.ru логотип - контрактные двигатели и коробки передач'
                       : `${decodedCompanyName} логотип`
                     } 
                     className="w-12 h-12 rounded-lg border-2 border-gray-200 bg-white object-cover shadow-sm" 
@@ -285,8 +285,8 @@ const CompanyPage: React.FC = () => {
                 )}
                 <CompanyIcon category={companyReviews[0]?.companyCategory || 'tech'} />
                 <h1 className="text-3xl font-bold text-gray-900">
-                  {decodedCompanyName === 'EstoniaMotors' 
-                    ? 'estoniamotors.ru отзывы - EstoniaMotors.ru официальный сайт'
+                  {decodedCompanyName === 'MotorZen.ru' 
+                    ? 'motorzen.ru отзывы - MotorZen.ru официальный сайт'
                     : `${decodedCompanyName} отзывы`
                   }
                 </h1>
@@ -318,24 +318,24 @@ const CompanyPage: React.FC = () => {
                 </div>
               </div>
               
-              {/* SEO блок для EstoniaMotors */}
-              {decodedCompanyName === 'EstoniaMotors' && (
+                      {/* SEO блок для MotorZen.ru */}
+        {decodedCompanyName === 'MotorZen.ru' && (
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                  <h2 className="text-xl font-semibold text-blue-900 mb-3">О компании estoniamotors.ru</h2>
-                  <p className="text-blue-800 text-sm leading-relaxed">
-                    <strong>EstoniaMotors.ru</strong> - официальный сайт интернет-магазина контрактных двигателей и коробок передач из Эстонии. 
-                    На <strong>estoniamotors.ru</strong> вы найдете качественные автозапчасти с гарантией. 
-                    Читайте реальные отзывы покупателей о <strong>estoniamotors.ru</strong> ниже на этой странице. 
-                    Сайт <strong>EstoniaMotors.ru</strong> специализируется на продаже контрактных двигателей, коробок передач и других автозапчастей из Эстонии. 
-                    Все отзывы о <strong>estoniamotors.ru</strong> от реальных покупателей помогут вам сделать правильный выбор.
-                  </p>
+                                      <h2 className="text-xl font-semibold text-blue-900 mb-3">О компании motorzen.ru</h2>
+                    <p className="text-blue-800 text-sm leading-relaxed">
+                      <strong>MotorZen.ru</strong> - официальный сайт интернет-магазина контрактных двигателей и коробок передач с гарантией. 
+                      На <strong>motorzen.ru</strong> вы найдете качественные автозапчасти с быстрой доставкой по России. 
+                     Читайте реальные отзывы покупателей о <strong>motorzen.ru</strong> ниже на этой странице. 
+                      Сайт <strong>MotorZen.ru</strong> специализируется на продаже контрактных двигателей, коробок передач и других автозапчастей с гарантией. 
+                     Все отзывы о <strong>motorzen.ru</strong> от реальных покупателей помогут вам сделать правильный выбор.
+                    </p>
                 </div>
               )}
             </div>
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-gray-900">
-                {decodedCompanyName === 'EstoniaMotors' 
-                  ? 'Отзывы о estoniamotors.ru - реальные мнения покупателей'
+                {decodedCompanyName === 'MotorZen.ru' 
+                  ? 'Отзывы о motorzen.ru - реальные мнения покупателей'
                   : 'Отзывы'
                 }
               </h2>
@@ -344,8 +344,8 @@ const CompanyPage: React.FC = () => {
               ) : companyReviews.length === 0 ? (
                 <div className="bg-white border border-gray-200 rounded-lg p-12 text-center">
                   <div className="text-gray-500 text-lg">
-                    {decodedCompanyName === 'EstoniaMotors' 
-                      ? 'Пока нет отзывов о estoniamotors.ru'
+                    {decodedCompanyName === 'MotorZen.ru' 
+                      ? 'Пока нет отзывов о motorzen.ru'
                       : 'Пока нет отзывов о компании'
                     }
                   </div>
@@ -357,8 +357,8 @@ const CompanyPage: React.FC = () => {
                           to={`/add-review?company=${encodeURIComponent(decodedCompanyName)}`}
                           className="text-blue-600 hover:text-blue-700"
                         >
-                          {decodedCompanyName === 'EstoniaMotors' 
-                            ? 'оставит отзыв о estoniamotors.ru'
+                          {decodedCompanyName === 'MotorZen.ru' 
+                            ? 'оставит отзыв о motorzen.ru'
                             : 'оставит отзыв'
                           }
                         </Link>
@@ -369,8 +369,8 @@ const CompanyPage: React.FC = () => {
                         <Link to="/login" className="text-blue-600 hover:text-blue-700">
                           Войдите
                         </Link>
-                        {decodedCompanyName === 'EstoniaMotors' 
-                          ? ', чтобы оставить первый отзыв о estoniamotors.ru!'
+                        {decodedCompanyName === 'MotorZen.ru' 
+                          ? ', чтобы оставить первый отзыв о motorzen.ru!'
                           : ', чтобы оставить первый отзыв!'
                         }
                       </>
@@ -383,27 +383,27 @@ const CompanyPage: React.FC = () => {
                 ))
               )}
               
-              {/* FAQ секция для EstoniaMotors для SEO */}
-              {decodedCompanyName === 'EstoniaMotors' && (
+                          {/* FAQ секция для MotorZen.ru для SEO */}
+            {decodedCompanyName === 'MotorZen.ru' && (
                 <div className="bg-white border border-gray-200 rounded-lg p-6 mt-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Часто задаваемые вопросы о estoniamotors.ru</h3>
-                  <div className="space-y-4">
-                    <div className="border-b border-gray-200 pb-3">
-                      <h4 className="font-medium text-gray-800 mb-2">Что такое estoniamotors.ru?</h4>
-                      <p className="text-sm text-gray-600">EstoniaMotors.ru - это интернет-магазин контрактных двигателей и коробок передач из Эстонии. На сайте estoniamotors.ru можно купить качественные автозапчасти с гарантией.</p>
-                    </div>
-                    <div className="border-b border-gray-200 pb-3">
-                      <h4 className="font-medium text-gray-800 mb-2">Какие отзывы о estoniamotors.ru?</h4>
-                      <p className="text-sm text-gray-600">Отзывы о EstoniaMotors.ru в основном положительные. Покупатели отмечают качество товаров, быструю доставку и гарантию на продукцию estoniamotors.ru.</p>
-                    </div>
-                    <div className="border-b border-gray-200 pb-3">
-                      <h4 className="font-medium text-gray-800 mb-2">Надежен ли сайт estoniamotors.ru?</h4>
-                      <p className="text-sm text-gray-600">По отзывам покупателей, EstoniaMotors.ru - надежный интернет-магазин. Компания предоставляет гарантию на товары и осуществляет быструю доставку.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-800 mb-2">Где найти отзывы о estoniamotors.ru?</h4>
-                      <p className="text-sm text-gray-600">Отзывы о EstoniaMotors.ru можно найти на этой странице. Здесь собраны реальные мнения покупателей о estoniamotors.ru интернет-магазине.</p>
-                    </div>
+                                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Часто задаваемые вопросы о motorzen.ru</h3>
+                    <div className="space-y-4">
+                      <div className="border-b border-gray-200 pb-3">
+                        <h4 className="font-medium text-gray-800 mb-2">Что такое motorzen.ru?</h4>
+                        <p className="text-sm text-gray-600">MotorZen.ru - это интернет-магазин контрактных двигателей и коробок передач с гарантией. На сайте motorzen.ru можно купить качественные автозапчасти с быстрой доставкой по России.</p>
+                      </div>
+                      <div className="border-b border-gray-200 pb-3">
+                        <h4 className="font-medium text-gray-800 mb-2">Какие отзывы о motorzen.ru?</h4>
+                       <p className="text-sm text-gray-600">Отзывы о MotorZen.ru исключительно положительные. Покупатели отмечают высокое качество товаров, профессиональный подход, быструю доставку и надежную гарантию motorzen.ru.</p>
+                      </div>
+                      <div className="border-b border-gray-200 pb-3">
+                        <h4 className="font-medium text-gray-800 mb-2">Надежен ли сайт motorzen.ru?</h4>
+                        <p className="text-sm text-gray-600">По отзывам покупателей, MotorZen.ru - очень надежный интернет-магазин. Компания предоставляет гарантию на товары, качественную консультацию и быструю доставку.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-800 mb-2">Где найти отзывы о motorzen.ru?</h4>
+                       <p className="text-sm text-gray-600">Отзывы о MotorZen.ru можно найти на этой странице. Здесь собраны реальные мнения покупателей о motorzen.ru интернет-магазине и качестве обслуживания.</p>
+                      </div>
                   </div>
                 </div>
               )}

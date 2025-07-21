@@ -9,9 +9,9 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- EstoniaMotors - максимальный приоритет -->
+  <!-- MotorZen.ru - максимальный приоритет -->
   <url>
-    <loc>https://reccomended.ru/company/EstoniaMotors</loc>
+    <loc>https://reccomended.ru/company/MotorZen.ru</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>

@@ -4,8 +4,8 @@ Allow: /
 # Sitemap
 Sitemap: https://reccomended.ru/sitemap.xml
 
-# Быстрая индексация EstoniaMotors
-Allow: /company/EstoniaMotors
+# Быстрая индексация MotorZen.ru
+Allow: /company/MotorZen.ru
 
 # Поисковые боты
 User-agent: Googlebot
