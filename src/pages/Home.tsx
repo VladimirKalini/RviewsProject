@@ -222,10 +222,31 @@ const Home: React.FC = () => {
         
         <div className="mb-8 p-6 rounded-xl bg-gradient-to-r from-blue-500 to-green-400 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4 animate-fade-in">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Добро пожаловать на Rviews!</h2>
-            <p className="text-lg">Читайте и оставляйте отзывы о компаниях, делитесь своим опытом и помогайте другим выбирать лучшее.</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Добро пожаловать на Reccomended.ru!</h2>
+            <p className="text-lg">Читайте отзывы о компаниях, включая estoniamotors.ru, делитесь своим опытом и помогайте другим выбирать лучшее.</p>
           </div>
           <a href="/add-review" className="mt-4 md:mt-0 inline-block bg-white text-blue-600 font-bold px-6 py-3 rounded-lg shadow-md hover:bg-blue-50 transition-colors animate-bounce">Оставить отзыв</a>
+        </div>
+        
+        {/* SEO блок с упоминанием популярных компаний */}
+        <div className="mb-8 bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">Популярные компании на нашем сайте</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            На Reccomended.ru вы найдете отзывы о многих компаниях, включая <strong>estoniamotors.ru</strong> - интернет-магазин контрактных двигателей и автозапчастей из Эстонии. 
+            Читайте реальные отзывы покупателей о <strong>EstoniaMotors.ru</strong>, TechNova, WebStudio и других компаниях. 
+            Все отзывы о <strong>estoniamotors.ru</strong> помогут вам сделать правильный выбор при покупке автозапчастей.
+          </p>
+          <div className="flex flex-wrap gap-3 mt-4">
+            <Link to="/company/EstoniaMotors" className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors">
+              estoniamotors.ru отзывы
+            </Link>
+            <Link to="/company/TechNova" className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+              TechNova
+            </Link>
+            <Link to="/company/WebStudio" className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+              WebStudio
+            </Link>
+          </div>
         </div>
    
         <div className="flex items-center space-x-2 mb-8">
