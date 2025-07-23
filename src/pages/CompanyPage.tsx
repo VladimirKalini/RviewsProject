@@ -25,13 +25,23 @@ const CompanyPage: React.FC = () => {
     }
 
     setLoading(true);
-    fetch(createApiUrl(API_ENDPOINTS.COMPANY_REVIEWS(companyName)))
-      .then(res => res.json())
+    const apiUrl = createApiUrl(API_ENDPOINTS.COMPANY_REVIEWS(companyName));
+    console.log('Fetching reviews from:', apiUrl);
+    
+    fetch(apiUrl)
+      .then(res => {
+        console.log('Response status:', res.status);
+        return res.json();
+      })
       .then((data: Review[]) => {
+        console.log('Received reviews:', data.length, 'items');
         setReviews(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((error) => {
+        console.error('Error fetching reviews:', error);
+        setLoading(false);
+      });
   }, [companyName]);
 
   const decodedCompanyName = decodeURIComponent(companyName || '');
@@ -378,9 +388,18 @@ const CompanyPage: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                companyReviews.map((review) => (
-                  <ReviewCard key={review.id} review={review} showCompanyName={false} />
-                ))
+                <>
+                  <div className="text-sm text-gray-500 mb-4">
+                    Отображается {companyReviews.length} отзывов:
+                    {companyReviews.map(review => ` ${review.authorName}`).join(',')}
+                  </div>
+                  {companyReviews.map((review, index) => {
+                    console.log(`Rendering review ${index + 1}:`, review.authorName, review.title);
+                    return (
+                      <ReviewCard key={review.id} review={review} showCompanyName={false} />
+                    );
+                  })}
+                </>
               )}
               
                           {/* FAQ секция для MotorZen.ru для SEO */}

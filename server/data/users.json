@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": "user-mz-marat",
+    "username": "Марат",
+    "email": "marat@example.com",
+    "createdAt": "2025-02-17T08:00:00.000Z"
+  },
+  {
+    "id": "user-mz-denis",
+    "username": "Денис",
+    "email": "denis@example.com",
+    "createdAt": "2025-01-13T08:00:00.000Z"
+  },
+  {
+    "id": "user-mz-ivan",
+    "username": "Иван",
+    "email": "ivan@example.com",
+    "createdAt": "2024-11-07T08:00:00.000Z"
+  },
+  {
+    "id": "user-mz-timur",
+    "username": "Тимур",
+    "email": "timur@example.com",
+    "createdAt": "2024-10-16T08:00:00.000Z"
+  },
+  {
+    "id": "user-mz-marik",
+    "username": "Марик",
+    "email": "marik@example.com",
+    "createdAt": "2024-03-05T08:00:00.000Z"
+  },
+  {
+    "id": "user-mz-igor",
+    "username": "Игорь",
+    "email": "igor@example.com",
+    "createdAt": "2023-09-28T08:00:00.000Z"
+  }
+]
