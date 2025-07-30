@@ -22,6 +22,8 @@ const StarRating: React.FC<StarRatingProps> = ({
     lg: 'h-6 w-6',
   };
 
+
+  
   const handleStarClick = (starRating: number) => {
     if (interactive && onRatingChange) {
       onRatingChange(starRating);
